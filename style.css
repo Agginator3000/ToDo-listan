@@ -1,0 +1,103 @@
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Poppins:100,100italic,200,200italic,300,300italic,regular,italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic);
+*, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poppins";
+  background: radial-gradient(circle, rgb(238, 174, 202) 0%, rgb(148, 187, 233) 100%);
+}
+body main {
+  margin: auto;
+  margin-top: 200px;
+  background-color: #d1e6ff;
+  width: 600px;
+  border-radius: 20px;
+  padding: 2rem;
+  min-height: 200px;
+}
+body main h1 {
+  margin-bottom: 2rem;
+}
+body main input {
+  padding: 0.8rem;
+  border: none;
+  border-radius: 15px;
+  margin-top: 1rem;
+}
+body main .todo-item {
+  list-style: none;
+  width: 100%;
+  background-color: rgb(255, 247, 255);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+body main .todo-item .delete {
+  background-color: rgb(255, 131, 150);
+  border: none;
+  border-radius: 100px;
+  height: 2.2rem;
+  width: 2.2rem;
+}
+body main .todo-item label {
+  display: flex;
+  align-content: center;
+}
+body main .todo-item label .label-container {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+body main .todo-item label .label-container .submitted-time {
+  font-weight: 400;
+  font-size: 14px;
+}
+body main .todo-item label .label-text {
+  margin-left: 1rem;
+}
+body main .todo-item label input[type=checkbox] {
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  margin-top: 0;
+  width: 20px;
+  height: 20px;
+  position: relative;
+  border: 1px solid rgb(107, 167, 236);
+}
+body main .todo-item label input[type=checkbox]:checked {
+  background-color: rgb(107, 167, 236);
+}
+body main .todo-item label input[type=checkbox]:checked::after {
+  position: absolute;
+  left: 7px;
+  top: 5px;
+  content: "✔";
+  color: white;
+}
+body main #time-input {
+  width: 120px;
+  margin-right: 1rem;
+}
+body main .add {
+  background-color: rgb(107, 167, 236);
+  border: none;
+  border-radius: 12px;
+  padding: 0.8rem;
+  font-weight: 600;
+}
+body main #todo-count {
+  margin-top: 3rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+body main label {
+  font-weight: 600;
+}/*# sourceMappingURL=style.css.map */
