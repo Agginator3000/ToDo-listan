@@ -9,10 +9,6 @@ const todoList = document.querySelector('#todo-list');
 const timeInput = document.querySelector('#time-input');
 timeInput.placeholder = translate("estimatedTime");
 
-const li = document.createElement('li');
-const labelDiv = document.createElement('div');
-const label = document.createElement('label');
-
 
 
 newTodoInput.addEventListener('input', function() {
@@ -72,6 +68,16 @@ function addTodo() {
 }
 
 function createTodoElement(todoText, todoTime, checked) {
+
+
+const li = document.createElement('li');
+const labelDiv = document.createElement('div');
+const label = document.createElement('label');
+
+const deleteBtn = document.createElement('button');
+
+
+const spanText = document.createElement('span');
    
     li.classList.add('todo-item');
     li.dataset.time = todoTime;
@@ -82,9 +88,6 @@ function createTodoElement(todoText, todoTime, checked) {
 
     
     label.classList.add('check-container');
-
-    const spanText = document.createElement('span');
-
 
     spanText.textContent = _.capitalize(todoText); //uppercase med lodash
     spanText.classList.add('label-text');
@@ -100,7 +103,7 @@ function createTodoElement(todoText, todoTime, checked) {
     const spanCheck = document.createElement('span');
     spanCheck.classList.add('checkmark');
 
-    const deleteBtn = document.createElement('button');
+    
     deleteBtn.classList.add('btn', 'delete');
     //deleteBtn.ariaLabel = 'Ta bort';
     deleteBtn.setAttribute("aria-label", translate('delete'));
@@ -125,13 +128,35 @@ function createTodoElement(todoText, todoTime, checked) {
 
     deleteBtn.addEventListener('click', () => {
         todoList.removeChild(li);
-        openAccordion.appendChild(li);
         updateToDoCount();
         updateTotalTime();
+
+
+        const deletedItem = document.createElement('li');
+        deletedItem.classList.add('deleted-item');
+        const deletedList = document.getElementById('deleted-items');
+    
+        deletedList.appendChild(deletedItem);
+
+        deletedItem.textContent = spanText.textContent;
     })
 
     todoList.append(li);
     updateToDoCount();
+
+
+    const accordion = document.querySelector(".accordion");
+    const openAccordion = document.querySelector(".open-accordion");
+
+    accordion.addEventListener('click', () => {
+    openAccordion.style.display = 'flex';
+
+ 
+     
+
+})
+
+
 }
 
 addTodoBtn.addEventListener('click', () => {
@@ -145,13 +170,5 @@ addTodoBtn.addEventListener('click', () => {
 
 
 
-//accordion
-const accordion = document.querySelector(".accordion");
-const openAccordion = document.querySelector(".open-accordion");
-
-accordion.addEventListener('click', () => {
-    openAccordion.style.display = 'block';
-    li.removeChild(label);
-})
 
 
