@@ -99,7 +99,7 @@ function createTodoElement(todoText, todoTime, checked) {
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btn', 'delete');
     //deleteBtn.ariaLabel = 'Ta bort';
-    deleteBtn.setAttribute("aria-label","ta bort");
+    deleteBtn.setAttribute("aria-label", translate('delete'));
     deleteBtn.innerHTML = '<span class="material-symbols-outlined trash">delete</span>';
  
 
