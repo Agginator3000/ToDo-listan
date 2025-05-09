@@ -93,6 +93,12 @@ body main .add {
   padding: 0.8rem;
   font-weight: 600;
 }
+body main [aria-disabled=true] {
+  opacity: 0.5;
+}
+body main [aria-disabled=false] {
+  opacity: 1;
+}
 body main #todo-count {
   margin-top: 3rem;
   font-weight: 600;
@@ -100,4 +106,23 @@ body main #todo-count {
 }
 body main label {
   font-weight: 600;
+}
+body .deleted-container {
+  background-color: blue;
+  width: 600px;
+  margin: auto;
+  margin-top: 100px;
+  border-radius: 12px;
+  padding: 1rem;
+}
+body .deleted-container .accordion {
+  width: 100%;
+  background-color: #d1e6ff;
+  text-align: left;
+  border: none;
+  font-family: "poppins";
+  margin-top: 1rem;
+}
+body .deleted-container .open-accordion {
+  display: none;
 }/*# sourceMappingURL=style.css.map */

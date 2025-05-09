@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=delete" />
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=delete" />
     <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
+
 <body>
     <main>
         <h1>ToDo-Lista</h1>
         <form id="add-task-form">
             <label for="new-todo">Lägg till todo</label>
             <div class="input-container">
-                <input class="input-field" id="new-todo" type="text">
-                <input class="input-field" id="time-input" type="number">
-                <button class="btn add" id="btn-add">Lägg till</button>
+                <input class="input-field" id="new-todo" type="text" aria-label="Skriv en att göra" required>
+                <input class="input-field" id="time-input" type="number" aria-label="Hur många minuter kommer det ta?" required>
+                <button class="btn add" id="btn-add" aria-disabled="true">Lägg till</button>
             </div>
         </form>
-        <p id="todo-count"></p>
-        <ul id="todo-list">
+        <p id="todo-count" aria-live="polite"></p>
+        <ul id="todo-list" aria-live="assertive"> <!--Uppdaterar att en ny todo har lagts till?-->
 
         </ul>
         <div id="time-container">
-
+            <p>Total tid kvar: <span aria-live="polite">0</span> minuter</p>
         </div>
     </main>
+
+    
+<!-- 
+    <section class="deleted-container">
+        <button class="accordion">Öppna mig</button>
+        <div class="open-accordion"> 
+            <p>Nu är jag öppen</p>
+        </div>
+    </section> -->
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js"></script>
     <script type="module" src="script.js"></script>
 </body>
-</html>
 
+</html>

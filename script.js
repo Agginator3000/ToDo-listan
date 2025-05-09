@@ -1,56 +1,73 @@
+import { translate } from "./translations.js";
+
 const addTodoBtn = document.querySelector('#btn-add');
 
 const newTodoInput = document.querySelector('#new-todo');
-newTodoInput.placeholder = 'Vad behöver du göra?';
+newTodoInput.placeholder = translate("placeholder");
 
 const todoList = document.querySelector('#todo-list');
 const timeInput = document.querySelector('#time-input');
-timeInput.placeholder = 'Beräknad tid';
+timeInput.placeholder = translate("estimatedTime");
 
-let SubmittedMinutes = [];
+
+
+newTodoInput.addEventListener('input', function() {
+    if(newTodoInput.value.length > 1){
+        addTodoBtn.setAttribute('aria-disabled', 'false');
+    } else{
+        addTodoBtn.setAttribute('aria-disabled', 'true');
+    }
+})
+
+
 
 //uppdaterar i countern hur många todos som är kvar att göra
-function updateToDoCount(){
+function updateToDoCount() {
     const todos = document.querySelectorAll('.todo-item'); //hela todo-itemen
     const todoCount = document.querySelector('#todo-count'); //själva de som skriv ut
 
     const uncheckedCount = _.filter(Array.from(todos), (todoElement) => { //array.from(todos) omvandlar till vanlig array för att kunn använda lodash _filter
-    return !todoElement.querySelector('input[type="checkbox"]').checked;}).length; //_.filter returnerar en ny array där bara de med rätt villkor returneras. i detta fall de med icke icheckade checkboxar
+        return !todoElement.querySelector('input[type="checkbox"]').checked;
+    }).length; //_.filter returnerar en ny array där bara de med rätt villkor returneras. i detta fall de med icke icheckade checkboxar
 
-    const checkedCount = todos.length - uncheckedCount;    
+    const checkedCount = todos.length - uncheckedCount;
 
-    todoCount.innerHTML = `Kvar att göra: ${uncheckedCount} st (${checkedCount} färdiga)`;
+    todoCount.innerHTML = translate("todo", uncheckedCount, checkedCount);
 }
 
 //räkna ut tiden
-const timeContainer = document.querySelector('#time-container');
-const totalTime = document.createElement('p');
+const timeContainer = document.querySelector('#time-container p span');
 
-totalTime.classList.add('total-time');
-timeContainer.append(totalTime);
 
-function updateTotalTime(){
-    const totalMinutes = _.sum(SubmittedMinutes); 
-    totalTime.innerHTML = `Total tid kvar: ${totalMinutes} minuter`;
+function updateTotalTime() {
+    const allItems = todoList.querySelectorAll("li");
+    const submittedMinutes = Array.from(allItems)
+    .filter(item => {
+        return !item.querySelector('input[type="checkbox"]').checked;
+    })
+    .map((item) => Number(item.dataset.time));
+    const totalMinutes = _.sum(submittedMinutes);
+    timeContainer.textContent = totalMinutes;
 }
 
 
 //lägga till todo
-function addTodo(){
+function addTodo() {
+
     const currentValue = newTodoInput.value;
     const currentTime = timeInput.value;
-    if(currentValue,currentTime){
 
-        SubmittedMinutes.push(Number(currentTime)); //pushar in det man skriver i inputfältet in i arrayen
+    if (currentValue && currentTime) {
+        
+       // SubmittedMinutes.push(Number(currentTime)); //pushar in det man skriver i inputfältet in i arrayen
         createTodoElement(currentValue, currentTime, false);
         newTodoInput.value = '';
         timeInput.value = null;
-
         updateTotalTime();
     }
 }
 
-function createTodoElement(todoText, todoTime, checked){
+function createTodoElement(todoText, todoTime, checked) {
     const li = document.createElement('li');
     li.classList.add('todo-item');
     li.dataset.time = todoTime;
@@ -65,7 +82,6 @@ function createTodoElement(todoText, todoTime, checked){
     const spanText = document.createElement('span');
 
 
-
     spanText.textContent = _.capitalize(todoText); //uppercase med lodash
     spanText.classList.add('label-text');
 
@@ -73,45 +89,37 @@ function createTodoElement(todoText, todoTime, checked){
     timeElement.classList.add('submitted-time');
     timeElement.textContent = `(${todoTime} min)`;
 
-
     const labelDiv = document.createElement('div');
     labelDiv.classList.add('label-container');
-    labelDiv.append(spanText,timeElement)
+    labelDiv.append(spanText, timeElement)
 
     const spanCheck = document.createElement('span');
     spanCheck.classList.add('checkmark');
 
     const deleteBtn = document.createElement('button');
     deleteBtn.classList.add('btn', 'delete');
+    //deleteBtn.ariaLabel = 'Ta bort';
+    deleteBtn.setAttribute("aria-label","ta bort");
     deleteBtn.innerHTML = '<span class="material-symbols-outlined trash">delete</span>';
+ 
 
-    label.append(spanCheck,checkbox,labelDiv);
-    li.append(label,deleteBtn);
+    label.append(spanCheck, checkbox, labelDiv);
+    li.append(label, deleteBtn);
 
-    checkbox.addEventListener('change', ()=>{
+    checkbox.addEventListener('change', () => {
         const listItem = checkbox.parentNode.parentNode;
-        const todoTime = Number(listItem.dataset.time);
-
-
-        if(checkbox.checked === true){
-        
+        if (checkbox.checked === true) {
             todoList.removeChild(listItem);
             todoList.appendChild(listItem);
-
-            _.remove(SubmittedMinutes, (minute) => minute === todoTime);
-        }else{
+        } else {
             todoList.removeChild(listItem);
             todoList.prepend(listItem);
-            SubmittedMinutes.push(todoTime);
         }
         updateToDoCount();
         updateTotalTime();
     });
 
-    deleteBtn.addEventListener('click', () =>{
-
-        _.remove(SubmittedMinutes, (minute) => minute === Number(li.dataset.time) ); //lodash tar bort från arrayen
-
+    deleteBtn.addEventListener('click', () => {
         todoList.removeChild(li);
         updateToDoCount();
         updateTotalTime();
@@ -121,10 +129,19 @@ function createTodoElement(todoText, todoTime, checked){
     updateToDoCount();
 }
 
-addTodoBtn.addEventListener('click', (e) => {
-    e.preventDefault();
+addTodoBtn.addEventListener('click', () => {
     addTodo();
-});
+})
 
+
+
+
+
+
+
+
+//accordion
+const accordion = document.querySelector(".accordion");
+const openAccordion = document.querySelector("open-accordion");
 
 
