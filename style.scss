@@ -134,6 +134,18 @@ body{
         }
         .open-accordion{
             display: none;
+     
         }
     }
+    .todo-item{
+        list-style: none;
+        width: 100%;
+        background-color: rgb(255, 247, 255);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+        }
 }

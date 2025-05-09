@@ -9,6 +9,10 @@ const todoList = document.querySelector('#todo-list');
 const timeInput = document.querySelector('#time-input');
 timeInput.placeholder = translate("estimatedTime");
 
+const li = document.createElement('li');
+const labelDiv = document.createElement('div');
+const label = document.createElement('label');
+
 
 
 newTodoInput.addEventListener('input', function() {
@@ -68,7 +72,7 @@ function addTodo() {
 }
 
 function createTodoElement(todoText, todoTime, checked) {
-    const li = document.createElement('li');
+   
     li.classList.add('todo-item');
     li.dataset.time = todoTime;
 
@@ -76,7 +80,7 @@ function createTodoElement(todoText, todoTime, checked) {
     checkbox.type = 'checkbox';
     checkbox.checked = checked;
 
-    const label = document.createElement('label');
+    
     label.classList.add('check-container');
 
     const spanText = document.createElement('span');
@@ -89,7 +93,7 @@ function createTodoElement(todoText, todoTime, checked) {
     timeElement.classList.add('submitted-time');
     timeElement.textContent = `(${todoTime} min)`;
 
-    const labelDiv = document.createElement('div');
+    
     labelDiv.classList.add('label-container');
     labelDiv.append(spanText, timeElement)
 
@@ -121,6 +125,7 @@ function createTodoElement(todoText, todoTime, checked) {
 
     deleteBtn.addEventListener('click', () => {
         todoList.removeChild(li);
+        openAccordion.appendChild(li);
         updateToDoCount();
         updateTotalTime();
     })
@@ -142,6 +147,11 @@ addTodoBtn.addEventListener('click', () => {
 
 //accordion
 const accordion = document.querySelector(".accordion");
-const openAccordion = document.querySelector("open-accordion");
+const openAccordion = document.querySelector(".open-accordion");
+
+accordion.addEventListener('click', () => {
+    openAccordion.style.display = 'block';
+    li.removeChild(label);
+})
 
 
