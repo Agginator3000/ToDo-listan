@@ -108,7 +108,7 @@ body main label {
   font-weight: 600;
 }
 body .deleted-container {
-  background-color: blue;
+  background-color: #d1e6ff;
   width: 600px;
   margin: auto;
   margin-top: 100px;
@@ -117,15 +117,23 @@ body .deleted-container {
 }
 body .deleted-container .accordion {
   width: 100%;
-  background-color: #d1e6ff;
   text-align: left;
   border: none;
   font-family: "poppins";
-  margin-top: 1rem;
+  font-weight: 600;
+  font-size: 1rem;
+  background-color: #d1e6ff;
 }
 body .deleted-container .open-accordion {
   display: none;
+  width: 100%;
 }
-body .deleted-container .open-accordion .deleted-item {
+body .deleted-container .open-accordion #deleted-items {
+  background-color: black;
+}
+body .deleted-container .open-accordion #deleted-items .deleted-item {
   list-style: none;
+  padding: 2rem 0;
+  background-color: white;
+  width: 100%;
 }/*# sourceMappingURL=style.css.map */

@@ -148,17 +148,17 @@ const spanText = document.createElement('span');
     const accordion = document.querySelector(".accordion");
     const openAccordion = document.querySelector(".open-accordion");
 
-    accordion.addEventListener('click', () => {
-    openAccordion.style.display = 'flex';
-
- 
-     
-
-})
-
+    
+        accordion.addEventListener('click', () => {
+       
+        if(openAccordion.style.display === 'flex') {
+            openAccordion.style.display = 'none';
+        }else {
+            openAccordion.style.display = 'flex';
+        }
+    });
 
 }
-
 addTodoBtn.addEventListener('click', () => {
     addTodo();
 })
