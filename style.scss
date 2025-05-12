@@ -40,6 +40,8 @@ body{
             border-radius: 12px;
             margin-bottom: 1rem;
 
+
+    
             .delete{
                 background-color: rgb(255, 131, 150);
                 border: none;
@@ -131,24 +133,64 @@ body{
             font-family: 'poppins';
             font-weight: 600;
             font-size: 1rem;
-            background-color: #d1e6ff;        }
+            background-color: #d1e6ff;     
+             }
         .open-accordion{
             display: none;
             width: 100%;
+            margin-top: 2rem;  
 
             #deleted-items{
-                background-color: black;
-
-            .deleted-item{
-                list-style: none;
-                padding: 2rem 0;
-                background-color: white;
+           
                 width: 100%;
-            }
+                border-radius: 12px;
+               
+
         }
 
 
             }      
     }
+
+
+    .deleted-item{
+        list-style: none;
+        padding: 1rem 1rem;
+        background-color: white;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        border-radius: 12px;
+        margin-bottom: 1rem;
+
+        .button-container{
+            display: flex;
+            justify-content: space-between;
+            width: 150px;
+
+            .move-back{
+                padding: 0.3rem;
+                font-family: 'poppins';
+                border: none;
+                border-radius: 4px;
+                background-color: rgb(168, 170, 236);
+                font-weight: 400;
+                color: rgb(62, 62, 62);
+
+                
+            }
+            .delete{
+                background-color: rgb(255, 131, 150);
+                border: none;
+                border-radius: 100px;
+                height: 2.2rem;
+                width: 2.2rem;
+            }
+        }
+      
+    }
+
+
+    
           
 }

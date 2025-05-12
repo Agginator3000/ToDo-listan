@@ -127,13 +127,40 @@ body .deleted-container .accordion {
 body .deleted-container .open-accordion {
   display: none;
   width: 100%;
+  margin-top: 2rem;
 }
 body .deleted-container .open-accordion #deleted-items {
-  background-color: black;
+  width: 100%;
+  border-radius: 12px;
 }
-body .deleted-container .open-accordion #deleted-items .deleted-item {
+body .deleted-item {
   list-style: none;
-  padding: 2rem 0;
+  padding: 1rem 1rem;
   background-color: white;
   width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+}
+body .deleted-item .button-container {
+  display: flex;
+  justify-content: space-between;
+  width: 150px;
+}
+body .deleted-item .button-container .move-back {
+  padding: 0.3rem;
+  font-family: "poppins";
+  border: none;
+  border-radius: 4px;
+  background-color: rgb(168, 170, 236);
+  font-weight: 400;
+  color: rgb(62, 62, 62);
+}
+body .deleted-item .button-container .delete {
+  background-color: rgb(255, 131, 150);
+  border: none;
+  border-radius: 100px;
+  height: 2.2rem;
+  width: 2.2rem;
 }/*# sourceMappingURL=style.css.map */

@@ -1,5 +1,6 @@
 import { translate } from "./translations.js";
 
+
 const addTodoBtn = document.querySelector('#btn-add');
 
 const newTodoInput = document.querySelector('#new-todo');
@@ -138,11 +139,42 @@ const spanText = document.createElement('span');
     
         deletedList.appendChild(deletedItem);
 
-        deletedItem.textContent = spanText.textContent;
-    })
+        deletedItem.appendChild(labelDiv);
+   
+
+        const moveBackBtn = document.createElement('button');
+        moveBackBtn.classList.add('move-back');
+        moveBackBtn.innerHTML = 'Lägg tillbaka';
+
+        const btns = document.createElement('div');
+        btns.classList.add('button-container');
+        btns.appendChild(moveBackBtn);
+        btns.appendChild(deleteBtn);
+        deletedItem.appendChild(btns);
+
+        moveBackBtn.addEventListener('click', () => {
+
+            deletedItem.classList.remove('deleted-item');
+            deletedItem.classList.add('todo-item');
+         
+            deletedList.removeChild(deletedItem);
+            //todoList.appendChild(deletedItem);
+            btns.removeChild(moveBackBtn);
+
+      
+            createTodoElement(todoText, todoTime);
+            updateToDoCount();
+            updateTotalTime();
+           
+        })
+     
+    });
+
+
 
     todoList.append(li);
     updateToDoCount();
+ 
 
 
     const accordion = document.querySelector(".accordion");
