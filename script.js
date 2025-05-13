@@ -1,6 +1,5 @@
 import { translate } from "./translations.js";
 
-
 const addTodoBtn = document.querySelector('#btn-add');
 
 const newTodoInput = document.querySelector('#new-todo');
@@ -9,7 +8,6 @@ newTodoInput.placeholder = translate("placeholder");
 const todoList = document.querySelector('#todo-list');
 const timeInput = document.querySelector('#time-input');
 timeInput.placeholder = translate("estimatedTime");
-
 
 
 newTodoInput.addEventListener('input', function() {
@@ -54,6 +52,8 @@ function updateTotalTime() {
 
 //lägga till todo
 function addTodo() {
+
+
 
     const currentValue = newTodoInput.value;
     const currentTime = timeInput.value;
@@ -128,29 +128,52 @@ const spanText = document.createElement('span');
     });
 
     deleteBtn.addEventListener('click', () => {
+           
         todoList.removeChild(li);
         updateToDoCount();
         updateTotalTime();
 
-
+        const deletedList = document.getElementById('deleted-items');
         const deletedItem = document.createElement('li');
         deletedItem.classList.add('deleted-item');
-        const deletedList = document.getElementById('deleted-items');
+     
     
         deletedList.appendChild(deletedItem);
 
         deletedItem.appendChild(labelDiv);
-   
+
+
+      
+        const secondDeleteBtn = document.createElement('button');
+        secondDeleteBtn.innerHTML = '<span class="material-symbols-outlined trash">delete</span>';
+        
 
         const moveBackBtn = document.createElement('button');
         moveBackBtn.classList.add('move-back');
-        moveBackBtn.innerHTML = 'Lägg tillbaka';
+        moveBackBtn.innerHTML = translate('takeBack');
 
         const btns = document.createElement('div');
         btns.classList.add('button-container');
         btns.appendChild(moveBackBtn);
-        btns.appendChild(deleteBtn);
+        btns.appendChild(secondDeleteBtn);
         deletedItem.appendChild(btns);
+
+
+        const accordion = document.querySelector(".accordion");
+        const openAccordion = document.querySelector(".open-accordion");
+      
+            accordion.addEventListener('click', () => {
+           
+            if(openAccordion.style.display === 'flex') {
+                openAccordion.style.display = 'none';
+            }else {
+                openAccordion.style.display = 'flex';
+
+            }
+
+        });
+
+
 
         moveBackBtn.addEventListener('click', () => {
 
@@ -166,33 +189,25 @@ const spanText = document.createElement('span');
             updateToDoCount();
             updateTotalTime();
            
+        });
+    
+
+        secondDeleteBtn.addEventListener('click', () => {
+            deletedList.removeChild(deletedItem);
         })
      
     });
 
-
-
     todoList.append(li);
     updateToDoCount();
- 
-
-
-    const accordion = document.querySelector(".accordion");
-    const openAccordion = document.querySelector(".open-accordion");
-
-    
-        accordion.addEventListener('click', () => {
-       
-        if(openAccordion.style.display === 'flex') {
-            openAccordion.style.display = 'none';
-        }else {
-            openAccordion.style.display = 'flex';
-        }
-    });
 
 }
+
 addTodoBtn.addEventListener('click', () => {
     addTodo();
+
+    
+
 })
 
 

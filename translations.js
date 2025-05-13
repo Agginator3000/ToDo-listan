@@ -5,14 +5,16 @@ const translations = {
         placeholder: "Att göra",
         estimatedTime: "Beräknad tid",
         todo: `Kvar att göra: $1 st ($2 färdiga)`,
-        delete: "ta bort"
+        delete: "ta bort",
+        takeBack: "Lägg tillbaka"
 
     },
         en: {
         placeholder: "To Do",
         estimatedTime: "Estimated time",
         todo: `Left to do: $1 st ($2 finished)`,
-        delete: "delete"
+        delete: "delete",
+        takeBack: "Take Back"
     }
 };
 
